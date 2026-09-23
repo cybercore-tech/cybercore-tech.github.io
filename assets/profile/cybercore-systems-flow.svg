@@ -76,7 +76,7 @@
     <circle r="133" fill="none" stroke="#12e5de" stroke-opacity=".2" stroke-width="2" stroke-dasharray="4 15"/>
     <circle r="111" fill="none" stroke="url(#core)" stroke-width="5" stroke-dasharray="80 18 30 16" filter="url(#glow)"/>
     <path d="M0-76L66-38V38L0 76L-66 38V-38Z" fill="#17142e" stroke="#f5f3ff" stroke-width="3"/>
-    <path d="M25-19A38 38 0 1 0 25 19" fill="none" stroke="#f5f3ff" stroke-width="13" stroke-linecap="round"/>
+    <path d="M33-19A38 38 0 1 0 33 19" fill="none" stroke="#f5f3ff" stroke-width="13" stroke-linecap="round"/>
     <circle r="14" fill="#12e5de" filter="url(#glow)"/>
     <circle r="5" fill="#f5f3ff"/>
     <text y="185" text-anchor="middle" class="node-title" font-size="24">CYBERCORE TECH</text>
