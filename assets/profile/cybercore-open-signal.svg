@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="360" viewBox="0 0 1600 360" role="img" aria-labelledby="title desc">
+  <title id="title">Cybercore Tech open signal network</title>
+  <desc id="desc">Clickable links to the open-source communities and tools behind Cybercore Tech.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131d"/><stop offset=".55" stop-color="#111329"/><stop offset="1" stop-color="#210d25"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#12e5de" stop-opacity="0"/><stop offset=".5" stop-color="#12e5de"/><stop offset="1" stop-color="#ff2158" stop-opacity="0"/></linearGradient>
+    <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse"><path d="M38 0H0V38" fill="none" stroke="#91b9d0" stroke-opacity=".09"/></pattern>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      text{font-family:'JetBrains Mono','SFMono-Regular',Consolas,monospace}
+      .label{font-size:17px;font-weight:700;letter-spacing:2px;fill:#f5f3ff}
+      .meta{font-size:12px;letter-spacing:2px;fill:#94a8bb}
+      .route{fill:none;stroke:#12e5de;stroke-width:2;stroke-dasharray:7 12;opacity:.7}
+      .node:hover{filter:url(#glow)}
+    </style>
+  </defs>
+  <rect x="8" y="8" width="1584" height="344" rx="28" fill="url(#bg)" stroke="#23485a" stroke-width="2"/>
+  <rect x="26" y="26" width="1548" height="308" rx="18" fill="url(#grid)"/>
+  <text x="56" y="66" font-size="16" letter-spacing="5" fill="#12e5de">OPEN SYSTEMS // OPEN SIGNAL</text>
+  <text x="1544" y="66" text-anchor="end" font-size="13" letter-spacing="3" fill="#8298ad">COMMUNITY RELAY / PUBLIC SOURCE</text>
+  <path d="M56 92H1544" stroke="url(#line)"/>
+
+  <path d="M800 186C660 186 530 150 390 132" class="route"/>
+  <path d="M800 186C660 186 530 222 390 240" class="route"/>
+  <path d="M800 186C940 186 1070 150 1210 132" class="route"/>
+  <path d="M800 186C940 186 1070 222 1210 240" class="route"/>
+
+  <g transform="translate(680 128)">
+    <rect width="240" height="116" rx="18" fill="#0b1a25" stroke="#12e5de" stroke-width="2"/>
+    <circle cx="120" cy="42" r="20" fill="#12e5de" opacity=".18" stroke="#12e5de"/>
+    <circle cx="120" cy="42" r="7" fill="#12e5de" filter="url(#glow)"/>
+    <text x="120" y="81" text-anchor="middle" class="label">CYBERCORE TECH</text>
+    <text x="120" y="101" text-anchor="middle" class="meta">OPEN BY DESIGN</text>
+  </g>
+
+  <a class="node" href="https://omarchy.org/"><g transform="translate(70 104)"><rect width="320" height="56" rx="12" fill="#101b24" stroke="#12e5de"/><text x="22" y="25" class="label">OMARCHY</text><text x="22" y="44" class="meta">DESKTOP SURFACE ↗</text></g></a>
+  <a class="node" href="https://www.rust-lang.org/"><g transform="translate(70 212)"><rect width="320" height="56" rx="12" fill="#241319" stroke="#ff6a1a"/><text x="22" y="25" class="label">RUST</text><text x="22" y="44" class="meta">SYSTEMS LANGUAGE ↗</text></g></a>
+  <a class="node" href="https://crates.io/"><g transform="translate(1210 104)"><rect width="320" height="56" rx="12" fill="#19200f" stroke="#b6ff3c"/><text x="22" y="25" class="label">CRATES.IO</text><text x="22" y="44" class="meta">PACKAGE ECOSYSTEM ↗</text></g></a>
+  <a class="node" href="https://www.kernel.org/"><g transform="translate(1210 212)"><rect width="320" height="56" rx="12" fill="#1d1229" stroke="#b44dff"/><text x="22" y="25" class="label">LINUX KERNEL</text><text x="22" y="44" class="meta">OPEN INFRASTRUCTURE ↗</text></g></a>
+
+  <a href="https://archlinux.org/"><text x="515" y="300" class="meta" fill="#12e5de">ARCH LINUX ↗</text></a>
+  <a href="https://quickshell.org/"><text x="760" y="300" class="meta" fill="#b6ff3c">QUICKSHELL ↗</text></a>
+  <a href="https://www.lua.org/"><text x="1030" y="300" class="meta" fill="#ff2158">LUA ↗</text></a>
+</svg>

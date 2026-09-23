@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+  <title id="title">Cybercore Tech systems topology</title>
+  <desc id="desc">A clickable constellation connecting Cybercore Tech's five core systems.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050a12"/>
+      <stop offset="0.48" stop-color="#0b1022"/>
+      <stop offset="1" stop-color="#160b25"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12e5de"/>
+      <stop offset="0.5" stop-color="#b44dff"/>
+      <stop offset="1" stop-color="#ff2158"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#12e5de" stop-opacity="0"/><stop offset="0.5" stop-color="#12e5de"/><stop offset="1" stop-color="#12e5de" stop-opacity="0"/></linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#82a8c5" stroke-opacity=".09"/>
+      <path d="M23 0V46M0 23H46" fill="none" stroke="#82a8c5" stroke-opacity=".035"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#12e5de"/></marker>
+    <marker id="arrow-pink" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#ff2158"/></marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#b6ff3c"/></marker>
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#ff6a1a"/></marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#b44dff"/></marker>
+    <style>
+      text{font-family:'JetBrains Mono','SFMono-Regular',Consolas,monospace}
+      .micro{font-size:15px;letter-spacing:4px;fill:#8298ad}
+      .eyebrow{font-size:17px;letter-spacing:5px;fill:#12e5de}
+      .node-title{font-size:27px;font-weight:700;letter-spacing:3px;fill:#f5f3ff}
+      .node-meta{font-size:14px;letter-spacing:2px;fill:#9aabc0}
+      .node-signal{font-size:13px;letter-spacing:2px;font-weight:700}
+      .route{fill:none;stroke-width:2;stroke-dasharray:9 12;animation:flow 8s linear infinite}
+      .pulse{animation:pulse 2.8s ease-in-out infinite}
+      .scan{animation:scan 5s ease-in-out infinite}
+      @keyframes flow{to{stroke-dashoffset:-168}}
+      @keyframes pulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+      @keyframes scan{0%,100%{opacity:.2}50%{opacity:.8}}
+    </style>
+  </defs>
+
+  <rect x="8" y="8" width="1584" height="844" rx="34" fill="url(#bg)" stroke="#19384d" stroke-width="2"/>
+  <rect x="26" y="26" width="1548" height="808" rx="24" fill="url(#grid)"/>
+  <ellipse cx="800" cy="430" rx="420" ry="260" fill="#12e5de" opacity=".055" filter="url(#soft)"/>
+  <ellipse cx="800" cy="430" rx="300" ry="200" fill="#b44dff" opacity=".07" filter="url(#soft)"/>
+
+  <text x="76" y="84" class="eyebrow">CYBERCORE TECH // SYSTEMS TOPOLOGY</text>
+  <text x="76" y="118" class="micro">ONE CORE / MANY SYSTEMS / ZERO DRIFT</text>
+  <rect x="76" y="144" width="1448" height="1" fill="url(#cyan)"/>
+  <text x="1524" y="84" text-anchor="end" class="micro">LIVE SIGNAL // 05 NODES</text>
+
+  <!-- routed signal lanes -->
+  <path d="M610 370C520 322 472 260 414 220" class="route" stroke="#12e5de" marker-end="url(#arrow-cyan)"/>
+  <path d="M610 505C518 548 472 606 414 644" class="route" stroke="#ff2158" marker-end="url(#arrow-pink)"/>
+  <path d="M990 370C1080 318 1124 258 1186 220" class="route" stroke="#b6ff3c" marker-end="url(#arrow-green)"/>
+  <path d="M990 505C1084 548 1126 606 1186 644" class="route" stroke="#ff6a1a" marker-end="url(#arrow-orange)"/>
+  <path d="M800 560C800 616 800 646 800 690" class="route" stroke="#b44dff" marker-end="url(#arrow-purple)"/>
+
+  <g class="scan" opacity=".75">
+    <circle cx="510" cy="296" r="5" fill="#12e5de" filter="url(#glow)"/>
+    <circle cx="510" cy="578" r="5" fill="#ff2158" filter="url(#glow)"/>
+    <circle cx="1090" cy="296" r="5" fill="#b6ff3c" filter="url(#glow)"/>
+    <circle cx="1090" cy="578" r="5" fill="#ff6a1a" filter="url(#glow)"/>
+    <circle cx="800" cy="625" r="5" fill="#b44dff" filter="url(#glow)"/>
+  </g>
+
+  <!-- core -->
+  <g transform="translate(800 432)">
+    <circle r="150" fill="#0a1220" stroke="#1a3850" stroke-width="2"/>
+    <circle r="133" fill="none" stroke="#12e5de" stroke-opacity=".2" stroke-width="2" stroke-dasharray="4 15"/>
+    <circle r="111" fill="none" stroke="url(#core)" stroke-width="5" stroke-dasharray="80 18 30 16" filter="url(#glow)"/>
+    <path d="M0-76L66-38V38L0 76L-66 38V-38Z" fill="#17142e" stroke="#f5f3ff" stroke-width="3"/>
+    <path d="M25-19A38 38 0 1 0 25 19" fill="none" stroke="#f5f3ff" stroke-width="13" stroke-linecap="round"/>
+    <circle r="14" fill="#12e5de" filter="url(#glow)"/>
+    <circle r="5" fill="#f5f3ff"/>
+    <text y="185" text-anchor="middle" class="node-title" font-size="24">CYBERCORE TECH</text>
+    <text y="213" text-anchor="middle" class="micro">SHARED SOURCE OF TRUTH</text>
+  </g>
+
+  <!-- linked nodes -->
+  <a href="https://github.com/cybercore-tech/cybercore">
+    <g transform="translate(94 176)">
+      <rect width="330" height="126" rx="16" fill="#081723" stroke="#12e5de" stroke-width="2"/>
+      <rect width="7" height="126" rx="3" fill="#12e5de"/>
+      <circle cx="38" cy="38" r="15" fill="#12e5de" opacity=".22" stroke="#12e5de" stroke-width="2"/>
+      <text x="72" y="48" class="node-title">CYBERCORE</text>
+      <text x="28" y="82" class="node-meta">SCHEMA // PALETTE // TOKENS</text>
+      <text x="28" y="106" class="node-signal" fill="#12e5de">FOUNDATION  ↗</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/cybercore-tech/cyberdeck">
+    <g transform="translate(94 580)">
+      <rect width="330" height="126" rx="16" fill="#1b1022" stroke="#ff2158" stroke-width="2"/>
+      <rect width="7" height="126" rx="3" fill="#ff2158"/>
+      <circle cx="38" cy="38" r="15" fill="#ff2158" opacity=".22" stroke="#ff2158" stroke-width="2"/>
+      <text x="72" y="48" class="node-title">CYBERDECK</text>
+      <text x="28" y="82" class="node-meta">DESKTOP // WORKFLOW // OMARCHY</text>
+      <text x="28" y="106" class="node-signal" fill="#ff2158">OPERATOR SURFACE  ↗</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/cybercore-tech/cybermeta">
+    <g transform="translate(1176 176)">
+      <rect width="330" height="126" rx="16" fill="#101b16" stroke="#b6ff3c" stroke-width="2"/>
+      <rect x="323" width="7" height="126" rx="3" fill="#b6ff3c"/>
+      <circle cx="38" cy="38" r="15" fill="#b6ff3c" opacity=".22" stroke="#b6ff3c" stroke-width="2"/>
+      <text x="72" y="48" class="node-title">CYBERMETA</text>
+      <text x="28" y="82" class="node-meta">KNOWLEDGE // INDEX // SIGNAL</text>
+      <text x="28" y="106" class="node-signal" fill="#b6ff3c">KNOWLEDGE LAYER  ↗</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/cybercore-tech/cyberplug">
+    <g transform="translate(1176 580)">
+      <rect width="330" height="126" rx="16" fill="#21160e" stroke="#ff6a1a" stroke-width="2"/>
+      <rect x="323" width="7" height="126" rx="3" fill="#ff6a1a"/>
+      <circle cx="38" cy="38" r="15" fill="#ff6a1a" opacity=".22" stroke="#ff6a1a" stroke-width="2"/>
+      <text x="72" y="48" class="node-title">CYBERPLUG</text>
+      <text x="28" y="82" class="node-meta">OMARCHY // PLUGINS // DISTRIBUTION</text>
+      <text x="28" y="106" class="node-signal" fill="#ff6a1a">DISTRIBUTION LAYER  ↗</text>
+    </g>
+  </a>
+
+  <a href="https://github.com/cybercore-tech/cyberterm">
+    <g transform="translate(635 690)">
+      <rect width="330" height="108" rx="16" fill="#1b1027" stroke="#b44dff" stroke-width="2"/>
+      <rect x="161" y="102" width="8" height="6" rx="3" fill="#b44dff"/>
+      <circle cx="38" cy="36" r="15" fill="#b44dff" opacity=".22" stroke="#b44dff" stroke-width="2"/>
+      <text x="72" y="46" class="node-title">CYBERTERM</text>
+      <text x="28" y="75" class="node-meta">CLI // TERMINAL // OPERATOR TOOLS</text>
+      <text x="28" y="98" class="node-signal" fill="#b44dff">TERMINAL SURFACE  ↗</text>
+    </g>
+  </a>
+
+  <rect x="76" y="806" width="1448" height="1" fill="url(#cyan)"/>
+  <text x="76" y="829" class="micro">05 CORE NODES</text>
+  <text x="800" y="829" text-anchor="middle" class="micro">72 THEMES // 01 SCHEMA // 00 DRIFT</text>
+  <text x="1524" y="829" text-anchor="end" class="micro">FOLLOW THE SIGNAL ↗</text>
+</svg>
