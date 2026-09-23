@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Cybercore Tech</title>
+  <desc id="desc">Cybercore Tech systems framework banner with a neon grid, signal nodes, and shared core.</desc>
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#09080f"/>
+      <stop offset=".52" stop-color="#16151f"/>
+      <stop offset="1" stop-color="#09080f"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#00e5ff"/>
+      <stop offset="1" stop-color="#ff147f" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="60%">
+      <stop stop-color="#8a22e2" stop-opacity=".7"/>
+      <stop offset=".55" stop-color="#00e5ff" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#09080f" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#32303e" stroke-opacity=".68"/>
+      <path d="M24 0V48M0 24H48" fill="none" stroke="#00e5ff" stroke-opacity=".08"/>
+    </pattern>
+    <filter id="glow-cyan"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-pink"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="360" rx="22" fill="url(#field)"/>
+  <rect x="1" y="1" width="1198" height="358" rx="21" fill="url(#grid)" stroke="#00e5ff" stroke-opacity=".7"/>
+  <rect width="1200" height="360" fill="url(#core)" opacity=".92"/>
+  <path d="M0 282H1200" stroke="url(#beam)" stroke-width="2" opacity=".9"/>
+  <path d="M64 66H430M770 66H1136" stroke="#32303e"/>
+  <path d="M64 294H340M860 294H1136" stroke="#32303e"/>
+  <g fill="none" stroke="#00e5ff" stroke-opacity=".62">
+    <path d="M92 132H218L260 174"/>
+    <path d="M1108 132H982L940 174"/>
+    <path d="M92 236H218L260 194"/>
+    <path d="M1108 236H982L940 194"/>
+  </g>
+  <g fill="#00e5ff" filter="url(#glow-cyan)">
+    <circle cx="92" cy="132" r="4"/><circle cx="1108" cy="132" r="4"/>
+    <circle cx="92" cy="236" r="4"/><circle cx="1108" cy="236" r="4"/>
+  </g>
+  <g transform="translate(600 180)">
+    <circle r="88" fill="none" stroke="#00e5ff" stroke-opacity=".22" stroke-width="1"/>
+    <circle r="68" fill="none" stroke="#ff147f" stroke-opacity=".42" stroke-width="1" stroke-dasharray="4 10"/>
+    <circle r="51" fill="#09080f" stroke="#39ff33" stroke-width="2"/>
+    <circle r="43" fill="none" stroke="#8a22e2" stroke-width="7" stroke-dasharray="38 18 8 20" transform="rotate(-22)"/>
+    <path d="M-18 0H18M0-18V18" stroke="#00e5ff" stroke-width="2" opacity=".9"/>
+    <circle r="10" fill="#00e5ff" filter="url(#glow-cyan)"/>
+  </g>
+  <g fill="#f0f0f2" text-anchor="middle" font-family="monospace">
+    <text x="600" y="100" font-size="19" letter-spacing="7">CYBERCORE TECH</text>
+    <text x="600" y="128" font-size="10" letter-spacing="4" fill="#00e5ff">SYSTEMS // SCHEMA // SECURITY // SIGNAL</text>
+    <text x="600" y="268" font-size="10" letter-spacing="3" fill="#807f8b">ONE CORE / MANY SYSTEMS / ZERO DRIFT</text>
+  </g>
+  <g fill="#ff147f" filter="url(#glow-pink)">
+    <circle cx="442" cy="100" r="3"/><circle cx="758" cy="100" r="3"/>
+  </g>
+  <path d="M64 322H1136" stroke="#ff147f" stroke-opacity=".45"/>
+</svg>
