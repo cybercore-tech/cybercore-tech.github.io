@@ -14,6 +14,8 @@
 //   <cybercore-contact></cybercore-contact>                    full footer block
 //   <cybercore-contact variant="compact"></cybercore-contact>  one-line strip
 //   <cybercore-contact repo="argus"></cybercore-contact>       adds that repo's issue link
+//   <cybercore-contact bare></cybercore-contact>               no sign-off line, for pages
+//                                                              that already have their own
 //
 // Anything inside the tag is the no-JS / offline fallback and is shown only
 // if the data can't be loaded, e.g.
@@ -74,6 +76,7 @@ const STYLE = `
     --cc-mono: var(--mono, var(--font-mono, 'Share Tech Mono', ui-monospace, monospace));
     --cc-display: var(--display, var(--font-display, var(--cc-mono)));
     display: block;
+    container-type: inline-size;
     color: var(--cc-fg);
     font: 12px/1.5 var(--cc-mono);
   }
@@ -124,15 +127,22 @@ const STYLE = `
   .strip a.s.coffee-s { color: var(--acid, #39ff33); }
   .strip a.s.sec-s:hover { color: var(--orange, #ff9000); }
 
-  @media (max-width: 760px) {
+  /* Sized by the space the block is given, not the window, so it never
+     cramps when a page drops it into a narrow column. */
+  @container (max-width: 860px) {
+    .grid { grid-template-columns: 1fr 1fr; gap: 26px 0; }
+    .c-support { grid-column: 1 / -1; padding-left: 0; border-left: 0; padding-top: 20px; border-top: 1px solid var(--cc-line); }
+  }
+  @container (max-width: 560px) {
     .grid { grid-template-columns: 1fr; gap: 24px; }
-    .col, .col:first-child { padding: 0 0 0 14px; border-left: 1px solid var(--col); }
+    .col, .col:first-child, .c-support { padding: 0 0 0 14px; border: 0; border-left: 1px solid var(--col); }
+    .foot { flex-direction: column; gap: 8px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 `;
 
 class CybercoreContact extends HTMLElement {
-  static observedAttributes = ['variant', 'repo', 'src'];
+  static observedAttributes = ['variant', 'repo', 'src', 'bare'];
 
   connectedCallback() {
     if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
@@ -194,7 +204,8 @@ class CybercoreContact extends HTMLElement {
     const site = link(d.brand.site); if (site) site.textContent = d.brand.signoff;
     const foot = el('div', { class: 'foot' }, site || el('span', { text: d.brand.signoff }), el('span', { text: `${d.legal.copyright} · ${d.legal.notice}` }));
 
-    return el('nav', { 'aria-label': `${d.brand.name} contact` }, el('div', { class: 'grid' }, contactCol, channelsCol, supportCol), foot);
+    const grid = el('div', { class: 'grid' }, contactCol, channelsCol, supportCol);
+    return el('nav', { 'aria-label': `${d.brand.name} contact` }, grid, this.hasAttribute('bare') ? null : foot);
   }
 
   compact(d) {
