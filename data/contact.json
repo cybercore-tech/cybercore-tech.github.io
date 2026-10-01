@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "updated": "2026-10-01",
+  "brand": {
+    "name": "CYBERCORE TECH",
+    "tagline": "Schema-driven systems for the dark edge",
+    "site": "https://cybercoretech.net/",
+    "signoff": "CYBERCORE TECH / HUMAN-TESTED SYSTEMS"
+  },
+  "email": {
+    "contact": {
+      "label": "Direct contact",
+      "address": "dev@cybercoretech.net",
+      "note": "cybercoretech.net / direct inbox"
+    },
+    "security": {
+      "label": "Security",
+      "address": "security@cybercoretech.net",
+      "note": "Vulnerability reports: please don't open a public issue"
+    }
+  },
+  "channels": [
+    { "id": "github", "glyph": "GH", "label": "GitHub", "handle": "cybercore-tech", "url": "https://github.com/cybercore-tech" },
+    { "id": "discord", "glyph": "DC", "label": "Discord", "handle": "Cybercore", "url": "https://discord.gg/vBMcK5wAx" },
+    { "id": "devto", "glyph": "DV", "label": "Dev.to", "handle": "cybercore-tech", "url": "https://dev.to/cybercore-tech" },
+    { "id": "reddit", "glyph": "RD", "label": "Reddit", "handle": "cybercore_sh", "url": "https://www.reddit.com/user/cybercore_sh/" },
+    { "id": "gitlab", "glyph": "GL", "label": "GitLab", "handle": "darkstardevx", "url": "https://gitlab.com/darkstardevx" }
+  ],
+  "support": [
+    { "id": "buymeacoffee", "glyph": "BM", "label": "Buy Me a Coffee", "handle": "cybercoretech", "url": "https://buymeacoffee.com/cybercoretech" }
+  ],
+  "legal": {
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 Cybercore Tech",
+    "notice": "Independent project / upstream links / no affiliation implied"
+  }
+}
