@@ -14,6 +14,7 @@ This site is separate from the existing `cybercoretech.net` project. It presents
 <cybercore-contact></cybercore-contact>                     <!-- full block -->
 <cybercore-contact variant="compact"></cybercore-contact>   <!-- one line -->
 <cybercore-contact repo="argus"></cybercore-contact>        <!-- adds that repo's issues link -->
+<cybercore-contact bare></cybercore-contact>                 <!-- no sign-off line, for pages with their own -->
 ```
 
 - **Theme-aware:** it reads the page's CYBERGRID tokens (`--bg`, `--panel`, `--line`, `--muted`, `--white` or `--fg`, `--cyan`, `--pink`, `--acid`, `--orange`) and re-themes live when the page switches palettes.

@@ -14,6 +14,8 @@
 //   <cybercore-contact></cybercore-contact>                    full footer block
 //   <cybercore-contact variant="compact"></cybercore-contact>  one-line strip
 //   <cybercore-contact repo="argus"></cybercore-contact>       adds that repo's issue link
+//   <cybercore-contact bare></cybercore-contact>               no sign-off line, for pages
+//                                                              that already have their own
 //
 // Anything inside the tag is the no-JS / offline fallback and is shown only
 // if the data can't be loaded, e.g.
@@ -140,7 +142,7 @@ const STYLE = `
 `;
 
 class CybercoreContact extends HTMLElement {
-  static observedAttributes = ['variant', 'repo', 'src'];
+  static observedAttributes = ['variant', 'repo', 'src', 'bare'];
 
   connectedCallback() {
     if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
@@ -202,7 +204,8 @@ class CybercoreContact extends HTMLElement {
     const site = link(d.brand.site); if (site) site.textContent = d.brand.signoff;
     const foot = el('div', { class: 'foot' }, site || el('span', { text: d.brand.signoff }), el('span', { text: `${d.legal.copyright} · ${d.legal.notice}` }));
 
-    return el('nav', { 'aria-label': `${d.brand.name} contact` }, el('div', { class: 'grid' }, contactCol, channelsCol, supportCol), foot);
+    const grid = el('div', { class: 'grid' }, contactCol, channelsCol, supportCol);
+    return el('nav', { 'aria-label': `${d.brand.name} contact` }, grid, this.hasAttribute('bare') ? null : foot);
   }
 
   compact(d) {
