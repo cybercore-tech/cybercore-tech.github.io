@@ -19,7 +19,8 @@
 //
 // The website (data.home, falling back to brand.site) is featured as an
 // animated "home base" card at the top of the channels column, and as a
-// highlighted first link in the compact strip.
+// highlighted first link in the compact strip. Both are skipped on the
+// website itself (cybercoretech.net), where they'd only link to the same page.
 //
 // Anything inside the tag is the no-JS / offline fallback and is shown only
 // if the data can't be loaded, e.g.
@@ -39,6 +40,17 @@ function loadData(src) {
   if (src) return fetch(src).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
   dataPromise ??= fetch(DATA_URL).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
   return dataPromise;
+}
+
+// True when the page is already on the site `url` points to (www. or not):
+// the home-base link would only point back at itself there.
+function isCurrentSite(url) {
+  try {
+    const bare = (h) => h.replace(/^www\./, '').toLowerCase();
+    return bare(new URL(url).host) === bare(location.host);
+  } catch {
+    return false;
+  }
 }
 
 // Only https: and mailto: links ever make it into the page.
@@ -297,7 +309,7 @@ class CybercoreContact extends HTMLElement {
   homeCard(d) {
     const home = d.home || { label: 'Home base', url: d.brand.site, title: (d.brand.site || '').replace(/^https:\/\/|\/$/g, '') };
     const href = safeUrl(home.url);
-    if (!href) return null;
+    if (!href || isCurrentSite(href)) return null;
     const svgNS = 'http://www.w3.org/2000/svg';
     const globe = document.createElementNS(svgNS, 'svg');
     globe.setAttribute('viewBox', '0 0 34 34');
@@ -342,7 +354,7 @@ class CybercoreContact extends HTMLElement {
       strip.append(el('span', { class: 'sep', text: '/', 'aria-hidden': 'true' }), a);
     };
     const home = d.home || { url: d.brand.site };
-    if (home.url) add(home.url, `${(home.title || home.url.replace(/^https:\/\/|\/$/g, ''))} ↗`, 'home-s');
+    if (home.url && !isCurrentSite(home.url)) add(home.url, `${(home.title || home.url.replace(/^https:\/\/|\/$/g, ''))} ↗`, 'home-s');
     for (const c of d.channels) add(c.url, c.label);
     const issues = this.repoIssues(); if (issues) add(issues, 'Issues');
     if (security) add(`mailto:${security.address}`, 'Security', 'sec-s');
