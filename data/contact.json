@@ -7,6 +7,12 @@
     "site": "https://cybercoretech.net/",
     "signoff": "CYBERCORE TECH / HUMAN-TESTED SYSTEMS"
   },
+  "home": {
+    "label": "Home base",
+    "title": "cybercoretech.net",
+    "url": "https://cybercoretech.net/",
+    "note": "The official Cybercore Tech website"
+  },
   "email": {
     "contact": {
       "label": "Direct contact",
@@ -20,13 +26,43 @@
     }
   },
   "channels": [
-    { "id": "github", "glyph": "GH", "label": "GitHub", "handle": "cybercore-tech", "url": "https://github.com/cybercore-tech" },
-    { "id": "discord", "glyph": "DC", "label": "Discord", "handle": "Cybercore", "url": "https://discord.gg/vBMcK5wAx" },
-    { "id": "devto", "glyph": "DV", "label": "Dev.to", "handle": "cybercore-tech", "url": "https://dev.to/cybercore-tech" },
-    { "id": "reddit", "glyph": "RD", "label": "Reddit", "handle": "cybercore_sh", "url": "https://www.reddit.com/user/cybercore_sh/" }
+    {
+      "id": "github",
+      "glyph": "GH",
+      "label": "GitHub",
+      "handle": "cybercore-tech",
+      "url": "https://github.com/cybercore-tech"
+    },
+    {
+      "id": "discord",
+      "glyph": "DC",
+      "label": "Discord",
+      "handle": "Cybercore",
+      "url": "https://discord.gg/vBMcK5wAx"
+    },
+    {
+      "id": "devto",
+      "glyph": "DV",
+      "label": "Dev.to",
+      "handle": "cybercore-tech",
+      "url": "https://dev.to/cybercore-tech"
+    },
+    {
+      "id": "reddit",
+      "glyph": "RD",
+      "label": "Reddit",
+      "handle": "cybercore_sh",
+      "url": "https://www.reddit.com/user/cybercore_sh/"
+    }
   ],
   "support": [
-    { "id": "buymeacoffee", "glyph": "BM", "label": "Buy Me a Coffee", "handle": "cybercoretech", "url": "https://buymeacoffee.com/cybercoretech" }
+    {
+      "id": "buymeacoffee",
+      "glyph": "BM",
+      "label": "Buy Me a Coffee",
+      "handle": "cybercoretech",
+      "url": "https://buymeacoffee.com/cybercoretech"
+    }
   ],
   "legal": {
     "license": "MIT",

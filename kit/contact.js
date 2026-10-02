@@ -17,11 +17,22 @@
 //   <cybercore-contact bare></cybercore-contact>               no sign-off line, for pages
 //                                                              that already have their own
 //
+// The website (data.home, falling back to brand.site) is featured as an
+// animated "home base" card at the top of the channels column, and as a
+// highlighted first link in the compact strip.
+//
 // Anything inside the tag is the no-JS / offline fallback and is shown only
 // if the data can't be loaded, e.g.
 //   <cybercore-contact><a href="mailto:dev@cybercoretech.net">dev@cybercoretech.net</a></cybercore-contact>
 
 const DATA_URL = new URL('../data/contact.json', import.meta.url).href;
+
+// The home-base card's border spins via an animated custom property, which
+// has to be registered at document level (@property doesn't work inside a
+// shadow root). Harmless if the browser lacks it: the border just stays put.
+try {
+  CSS.registerProperty({ name: '--cc-spin', syntax: '<angle>', inherits: false, initialValue: '0deg' });
+} catch { /* already registered, or unsupported */ }
 let dataPromise;
 
 function loadData(src) {
@@ -118,6 +129,77 @@ const STYLE = `
   .foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--cc-line); color: var(--cc-muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
   .foot a:hover { color: var(--cyan, #00e5ff); }
 
+  /* home base: cybercoretech.net, the one link that should stand out */
+  .home {
+    --h1: var(--cyan, #00e5ff); --h2: var(--pink, #ff147f); --h3: var(--acid, #39ff33); --h4: var(--purple, #8a22e2);
+    position: relative; display: flex; align-items: center; gap: 12px;
+    margin: 0 0 16px; padding: 12px 14px; border-radius: 10px; isolation: isolate; overflow: hidden;
+    background: color-mix(in srgb, var(--cc-bg) 80%, black);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--h1) 25%, transparent), 0 0 24px -6px color-mix(in srgb, var(--h1) 45%, transparent);
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+  }
+  /* spinning neon border: a conic gradient masked down to a 1.5px ring */
+  .home::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1.5px;
+    background: conic-gradient(from var(--cc-spin), var(--h1), var(--h2), var(--h3), var(--h4), var(--h1));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    animation: cc-spin 6s linear infinite;
+  }
+  /* light sweep on hover */
+  .home::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; z-index: 0; pointer-events: none;
+    background: linear-gradient(100deg, transparent, color-mix(in srgb, white 22%, transparent), transparent);
+    transform: skewX(-18deg); opacity: 0;
+  }
+  .home:hover, .home:focus-visible {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--h2) 45%, transparent), 0 10px 34px -6px color-mix(in srgb, var(--h2) 55%, transparent), 0 0 46px -10px color-mix(in srgb, var(--h1) 70%, transparent);
+  }
+  .home:hover::before, .home:focus-visible::before { animation-duration: 1.6s; }
+  .home:hover::after, .home:focus-visible::after { opacity: 1; animation: cc-sweep .9s ease-out; left: 120%; }
+  .home > * { position: relative; z-index: 1; }
+  .globe { flex: none; width: 34px; height: 34px; color: var(--h1); filter: drop-shadow(0 0 6px color-mix(in srgb, var(--h1) 70%, transparent)); }
+  .globe .orbit { transform-origin: 17px 17px; animation: cc-orbit 4s linear infinite; }
+  .home:hover .globe { color: var(--h3); }
+  .home-text { display: grid; gap: 2px; min-width: 0; }
+  .home-kicker { display: flex; align-items: center; gap: 6px; color: var(--h3); font: 700 9px var(--cc-mono); letter-spacing: .18em; text-transform: uppercase; }
+  .live { width: 6px; height: 6px; border-radius: 50%; background: var(--h3); box-shadow: 0 0 8px var(--h3); animation: cc-pulse 1.6s ease-in-out infinite; }
+  .home-title {
+    position: relative; color: var(--cc-fg); font: 700 15px/1.2 var(--cc-display); letter-spacing: .02em;
+    text-shadow: 0 0 12px color-mix(in srgb, var(--h1) 55%, transparent);
+    overflow-wrap: anywhere;
+  }
+  .home-title::before, .home-title::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  .home-title::before { color: var(--h1); }
+  .home-title::after { color: var(--h2); }
+  .home:hover .home-title::before { opacity: .8; animation: cc-glitch-a .5s steps(2) 2; }
+  .home:hover .home-title::after { opacity: .8; animation: cc-glitch-b .5s steps(2) 2; }
+  .home-note { color: var(--cc-muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+  .home-go {
+    margin-left: auto; flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+    color: var(--h1); border: 1px solid color-mix(in srgb, var(--h1) 50%, transparent); font-size: 13px;
+    transition: transform .25s, color .25s, border-color .25s, background .25s;
+  }
+  .home:hover .home-go { transform: translateX(3px) rotate(-45deg); color: var(--cc-bg); background: var(--h1); border-color: var(--h1); }
+  @keyframes cc-spin { to { --cc-spin: 360deg; } }
+  @keyframes cc-sweep { from { left: -60%; } to { left: 120%; } }
+  @keyframes cc-orbit { to { transform: rotate(360deg); } }
+  @keyframes cc-pulse { 50% { opacity: .3; } }
+  @keyframes cc-glitch-a { 0% { transform: translate(-2px, 1px); clip-path: inset(0 0 55% 0); } 50% { transform: translate(2px, -1px); clip-path: inset(40% 0 0 0); } 100% { transform: none; clip-path: inset(0 0 100% 0); } }
+  @keyframes cc-glitch-b { 0% { transform: translate(2px, -1px); clip-path: inset(50% 0 0 0); } 50% { transform: translate(-2px, 1px); clip-path: inset(0 0 60% 0); } 100% { transform: none; clip-path: inset(100% 0 0 0); } }
+
+  /* compact strip: the site link gets the same gradient treatment, in small */
+  .strip a.s.home-s {
+    color: var(--cc-fg); padding: 2px 9px; border-radius: 999px; font-weight: 700;
+    background: linear-gradient(var(--cc-bg), var(--cc-bg)) padding-box,
+                conic-gradient(from var(--cc-spin), var(--cyan, #00e5ff), var(--pink, #ff147f), var(--acid, #39ff33), var(--cyan, #00e5ff)) border-box;
+    border: 1px solid transparent; animation: cc-spin 6s linear infinite;
+    text-shadow: 0 0 10px color-mix(in srgb, var(--cyan, #00e5ff) 50%, transparent);
+    transition: box-shadow .2s, color .2s;
+  }
+  .strip a.s.home-s:hover { color: var(--cyan, #00e5ff); box-shadow: 0 0 16px color-mix(in srgb, var(--pink, #ff147f) 45%, transparent); }
+
   /* compact: one line for project pages */
   .strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
   .strip .mail { font-size: 11px; text-transform: none; letter-spacing: .03em; }
@@ -138,7 +220,10 @@ const STYLE = `
     .col, .col:first-child, .c-support { padding: 0 0 0 14px; border: 0; border-left: 1px solid var(--col); }
     .foot { flex-direction: column; gap: 8px; }
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    .home:hover, .home:focus-visible { transform: none; }
+  }
 `;
 
 class CybercoreContact extends HTMLElement {
@@ -191,7 +276,7 @@ class CybercoreContact extends HTMLElement {
         el('span', { text: c.label }), el('span', { class: 'handle', text: c.handle ? `/ ${c.handle}` : '' }), el('span', { class: 'arrow', text: '↗', 'aria-hidden': 'true' }));
       if (a) { a.className = 'chan'; list.append(el('li', {}, a)); }
     }
-    const channelsCol = el('div', { class: 'col c-channels' }, el('span', { class: 'label', text: 'Signal channels' }), list);
+    const channelsCol = el('div', { class: 'col c-channels' }, el('span', { class: 'label', text: 'Signal channels' }), this.homeCard(d), list);
 
     const supportCol = el('div', { class: 'col c-support' }, el('span', { class: 'label', text: 'Support the work' }));
     for (const s of d.support || []) {
@@ -208,6 +293,46 @@ class CybercoreContact extends HTMLElement {
     return el('nav', { 'aria-label': `${d.brand.name} contact` }, grid, this.hasAttribute('bare') ? null : foot);
   }
 
+  /** The website, featured: the one link on the block meant to stand out. */
+  homeCard(d) {
+    const home = d.home || { label: 'Home base', url: d.brand.site, title: (d.brand.site || '').replace(/^https:\/\/|\/$/g, '') };
+    const href = safeUrl(home.url);
+    if (!href) return null;
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const globe = document.createElementNS(svgNS, 'svg');
+    globe.setAttribute('viewBox', '0 0 34 34');
+    globe.setAttribute('class', 'globe');
+    globe.setAttribute('aria-hidden', 'true');
+    for (const [tag, attrs] of [
+      ['circle', { cx: 17, cy: 17, r: 11, fill: 'none', stroke: 'currentColor', 'stroke-width': 1.6 }],
+      ['ellipse', { cx: 17, cy: 17, rx: 5, ry: 11, fill: 'none', stroke: 'currentColor', 'stroke-width': 1.2 }],
+      ['path', { d: 'M6 17h22M8 11h18M8 23h18', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.1 }],
+    ]) {
+      const n = document.createElementNS(svgNS, tag);
+      for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+      globe.append(n);
+    }
+    const orbit = document.createElementNS(svgNS, 'g');
+    orbit.setAttribute('class', 'orbit');
+    const sat = document.createElementNS(svgNS, 'circle');
+    for (const [k, v] of Object.entries({ cx: 17, cy: 2.5, r: 2.2, fill: 'currentColor' })) sat.setAttribute(k, v);
+    orbit.append(sat);
+    globe.append(orbit);
+
+    const title = home.title || href.replace(/^https:\/\/|\/$/g, '');
+    const a = link(href,
+      globe,
+      el('span', { class: 'home-text' },
+        el('span', { class: 'home-kicker' }, el('span', { class: 'live', 'aria-hidden': 'true' }), document.createTextNode(home.label || 'Home base')),
+        el('span', { class: 'home-title', 'data-text': title, text: title }),
+        home.note ? el('span', { class: 'home-note', text: home.note }) : null),
+      el('span', { class: 'home-go', text: '→', 'aria-hidden': 'true' }));
+    if (!a) return null;
+    a.className = 'home';
+    a.setAttribute('aria-label', `${home.label || 'Home base'}: ${title} (opens in a new tab)`);
+    return a;
+  }
+
   compact(d) {
     const { contact, security } = d.email;
     const strip = el('nav', { class: 'strip', 'aria-label': `${d.brand.name} contact` }, mailLink(contact.address));
@@ -216,6 +341,8 @@ class CybercoreContact extends HTMLElement {
       a.className = `s ${cls}`.trim(); a.textContent = text;
       strip.append(el('span', { class: 'sep', text: '/', 'aria-hidden': 'true' }), a);
     };
+    const home = d.home || { url: d.brand.site };
+    if (home.url) add(home.url, `${(home.title || home.url.replace(/^https:\/\/|\/$/g, ''))} ↗`, 'home-s');
     for (const c of d.channels) add(c.url, c.label);
     const issues = this.repoIssues(); if (issues) add(issues, 'Issues');
     if (security) add(`mailto:${security.address}`, 'Security', 'sec-s');
