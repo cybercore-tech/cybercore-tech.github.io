@@ -180,7 +180,7 @@ const STYLE = `
   .home-title {
     position: relative; color: var(--cc-fg); font: 700 15px/1.2 var(--cc-display); letter-spacing: .02em;
     text-shadow: 0 0 12px color-mix(in srgb, var(--h1) 55%, transparent);
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
   .home-title::before, .home-title::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0; pointer-events: none; }
   .home-title::before { color: var(--h1); }
@@ -225,6 +225,10 @@ const STYLE = `
      cramps when a page drops it into a narrow column. */
   @container (max-width: 860px) {
     .grid { grid-template-columns: 1fr 1fr; gap: 26px 0; }
+    /* two columns: the channels column can be ~300px; keep the domain on one line */
+    .home { padding: 10px 11px; gap: 9px; }
+    .home-title { font-size: 13px; letter-spacing: 0; }
+    .globe { width: 28px; height: 28px; }
     .c-support { grid-column: 1 / -1; padding-left: 0; border-left: 0; padding-top: 20px; border-top: 1px solid var(--cc-line); }
   }
   @container (max-width: 560px) {
