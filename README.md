@@ -2,7 +2,13 @@
 
 The public Cybercore Tech organization landing surface for `cybercore-tech.github.io`.
 
-This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, five core repositories, the complete Cybercore theme matrix, and open-system acknowledgements.
+This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, five core repositories, the 81-theme CYBERGRID matrix, the Theme Studio entry point, and open-system acknowledgements.
+
+The theme gallery reads its catalog and palette JSON from `data/`. Keep those
+files aligned with `framework/cybercore/schema/themes/`; the gallery computes
+its theme and family counts from `data/cybergrid.json`. Cybercore Theme Studio
+supports custom themes, curated-family copies, and portable `.cyberpack.json`
+imports and exports for local Cybercore applications.
 
 ## Shared contact block
 
