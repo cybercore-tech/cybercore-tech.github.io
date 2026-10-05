@@ -10,6 +10,19 @@ its theme and family counts from `data/cybergrid.json`. Cybercore Theme Studio
 supports custom themes, curated-family copies, and portable `.cyberpack.json`
 imports and exports for local Cybercore applications.
 
+Cybercore 0.8.0 publishes the `cybercore-theme` quality and pack-checking CLI.
+The public Pages site serves `install.sh` at
+`https://cybercore-tech.github.io/cybercore/install.sh`; the quick install is:
+
+```sh
+curl -fsSL https://cybercore-tech.github.io/cybercore/install.sh | sh
+```
+
+The script requires Rust/Cargo and installs only the CLI binary. Rust projects
+should add `cybercore = "0.8"` as a crate dependency; the CLI installer does
+not install the library or the standalone Theme Studio application. The
+equivalent direct Cargo command is `cargo install cybercore --locked --bin cybercore-theme`.
+
 ## Shared contact block
 
 `data/contact.json` is the single source of truth for Cybercore Tech contact details: email, security address, signal channels, support links and the copyright line. `kit/contact.js` renders it as a `<cybercore-contact>` element that any Cybercore page can use:
